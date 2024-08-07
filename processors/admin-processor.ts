@@ -1,14 +1,14 @@
-import { log } from "../lib/log";
-import { ShadrizProcessor, ShadrizProcessorOpts } from "../lib/types";
-import { addShadcnComponents, renderTemplate } from "../lib/utils";
+import { log } from '../lib/log';
+import type { JustdrizProcessor, JustdrizProcessorOpts } from '../lib/types';
+import { addJustDComponents, renderTemplate } from '../lib/utils';
 
-export class AdminProcessor implements ShadrizProcessor {
-  opts: ShadrizProcessorOpts;
+export class AdminProcessor implements JustdrizProcessor {
+  opts: JustdrizProcessorOpts;
   dependencies: string[] = [];
   devDependencies: string[] = [];
-  shadcnComponents: string[] = ["card"];
+  justDComponents: string[] = ['card'];
 
-  constructor(opts: ShadrizProcessorOpts) {
+  constructor(opts: JustdrizProcessorOpts) {
     this.opts = opts;
   }
 
@@ -21,45 +21,46 @@ export class AdminProcessor implements ShadrizProcessor {
       return;
     }
 
-    await addShadcnComponents({
-      shadcnComponents: this.shadcnComponents,
+    await addJustDComponents({
+      justDComponents: this.justDComponents,
+      bun: this.opts.bun,
       pnpm: this.opts.pnpm,
     });
   }
   async render(): Promise<void> {
     renderTemplate({
-      inputPath: "admin-processor/app/(admin)/layout.tsx.hbs",
-      outputPath: "app/(admin)/layout.tsx.hbs",
+      inputPath: 'admin-processor/app/(admin)/layout.tsx.hbs',
+      outputPath: 'app/(admin)/layout.tsx.hbs',
     });
 
     renderTemplate({
-      inputPath: "admin-processor/app/(admin)/admin/page.tsx.hbs",
-      outputPath: "app/(admin)/admin/page.tsx",
+      inputPath: 'admin-processor/app/(admin)/admin/page.tsx.hbs',
+      outputPath: 'app/(admin)/admin/page.tsx',
     });
 
     renderTemplate({
-      inputPath: "admin-processor/app/admin-login/page.tsx.hbs",
-      outputPath: "app/(admin)/admin-login/page.tsx",
+      inputPath: 'admin-processor/app/admin-login/page.tsx.hbs',
+      outputPath: 'app/(admin)/admin-login/page.tsx',
     });
 
     renderTemplate({
-      inputPath: "admin-processor/lib/authorization.ts.hbs",
-      outputPath: "lib/authorization.ts",
+      inputPath: 'admin-processor/lib/authorization.ts.hbs',
+      outputPath: 'lib/authorization.ts',
     });
 
     renderTemplate({
-      inputPath: "admin-processor/schema/role.ts.hbs",
-      outputPath: "schema/role.ts",
+      inputPath: 'admin-processor/schema/role.ts.hbs',
+      outputPath: 'schema/role.ts',
     });
 
     renderTemplate({
-      inputPath: "admin-processor/scripts/create-admin.ts.hbs",
-      outputPath: "scripts/create-admin.ts",
+      inputPath: 'admin-processor/scripts/create-admin.ts.hbs',
+      outputPath: 'scripts/create-admin.ts',
     });
   }
 
   printCompletionMessage() {
-    log.white("\ncreate admin user:");
-    log.cmd("npx tsx scripts/create-admin.ts admin@example.com password123");
+    log.white('\ncreate admin user:');
+    log.cmd('npx tsx scripts/create-admin.ts admin@example.com password123');
   }
 }

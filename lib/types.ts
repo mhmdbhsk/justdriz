@@ -1,37 +1,38 @@
-export interface ShadrizProcessorOpts {
+export interface JustdrizProcessorOpts {
   pnpm: boolean;
+  bun: boolean;
   install: boolean;
   latest: boolean;
 }
 
-export interface NewProjectProcessorOpts extends ShadrizProcessorOpts {
+export interface NewProjectProcessorOpts extends JustdrizProcessorOpts {
   darkMode: boolean;
   authEnabled: boolean;
   stripeEnabled: boolean;
 }
 
-export interface DbPackageStrategyOpts extends ShadrizProcessorOpts {}
+export interface DbPackageStrategyOpts extends JustdrizProcessorOpts {}
 
-export interface DarkModeProcessorOpts extends ShadrizProcessorOpts {}
+export interface DarkModeProcessorOpts extends JustdrizProcessorOpts {}
 
-export type PkStrategy = "uuidv7" | "uuidv4" | "uuid" | "auto-increment";
+export type PkStrategy = 'uuidv7' | 'uuidv4' | 'uuid' | 'auto-increment';
 
-export interface StripeProcessorOpts extends ShadrizProcessorOpts {
+export interface StripeProcessorOpts extends JustdrizProcessorOpts {
   dbDialectStrategy: DbDialectStrategy;
   pkStrategy: PkStrategy;
 }
 
-export interface ShadrizProcessor {
-  opts: ShadrizProcessorOpts;
+export interface JustdrizProcessor {
+  opts: JustdrizProcessorOpts;
   dependencies: string[];
   devDependencies: string[];
-  shadcnComponents: string[];
+  justDComponents: string[];
   init(): Promise<void>;
   install(): Promise<void>;
   render(): Promise<void>;
 }
 
-export type DbDialect = "postgresql" | "mysql" | "sqlite";
+export type DbDialect = 'postgresql' | 'mysql' | 'sqlite';
 
 export interface ScaffoldOpts {
   table: string;
@@ -42,7 +43,7 @@ export interface DataTypeStrategyMap {
   [key: string]: DataTypeStrategy;
 }
 
-export type AuthorizationLevel = "admin" | "private" | "public";
+export type AuthorizationLevel = 'admin' | 'private' | 'public';
 
 export interface ScaffoldProcessorOpts extends ScaffoldOpts {
   dbDialectStrategy: DbDialectStrategy;
@@ -61,7 +62,7 @@ export interface DataTypeStrategyOpts {
   columnName: string;
 }
 
-type JSType = "string" | "number" | "boolean" | "object";
+type JSType = 'string' | 'number' | 'boolean' | 'object';
 
 export interface DataTypeStrategy {
   jsType: JSType;
@@ -102,12 +103,12 @@ export interface DbPackageStrategy {
 }
 
 export type AuthProvider =
-  | "github"
-  | "google"
-  | "credentials"
-  | "postmark"
-  | "nodemailer";
+  | 'github'
+  | 'google'
+  | 'credentials'
+  | 'postmark'
+  | 'nodemailer';
 
-export type SessionStrategy = "jwt" | "database";
+export type SessionStrategy = 'jwt' | 'database';
 
-export type DbPackage = "pg" | "mysql2" | "better-sqlite3";
+export type DbPackage = 'pg' | 'mysql2' | 'better-sqlite3';

@@ -1,9 +1,9 @@
 {
-  "name": "shadriz",
+  "name": "justdriz",
   "version": "1.2.0",
   "main": "dist/index.js",
   "bin": {
-    "shadriz": "./dist/index.js"
+    "justdriz": "./dist/index.js"
   },
   "scripts": {
     "test": "vitest",
@@ -12,7 +12,7 @@
   },
   "author": "fullstackbook",
   "license": "MIT",
-  "description": "a full stack framework next.js shadcnui and drizzle orm",
+  "description": "a full stack framework next.js justd and drizzle orm",
   "dependencies": {
     "@inquirer/prompts": "^5.3.0",
     "chalk": "^4.1.2",

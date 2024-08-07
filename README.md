@@ -1,12 +1,8 @@
-# shadriz
+# 🍱 justdriz
 
-## Introduction
+justdriz is a full stack automation tool for building TypeScript web applications using a curated selection of technologies.
 
-shadriz is a full stack automation tool for building TypeScript web applications using a curated selection of technologies.
-
-This is **NOT** a web framework.
-
-Rather, it is a command line interface code generation tool.
+justdriz is not a dependency that is added to your project. Instead, it is a command line code generation tool.
 
 You do not install it as a dependency.
 
@@ -19,7 +15,7 @@ The code is yours.
 ## Tech stack
 
 - [Next.js](https://nextjs.org/) - React Framework
-- [shadcn/ui](https://ui.shadcn.com/) - UI Components
+- [justd](https://justd.co/) - UI Components
 - [Drizzle ORM](https://orm.drizzle.team/) - Object Relational Mapper
 - [TailwindCSS](https://tailwindcss.com/) - CSS Framework
 - [Auth.js](https://authjs.dev/) - Authentication
@@ -38,10 +34,10 @@ npx create-next-app@latest my-app --typescript --eslint --tailwind --app --no-sr
 
 ### Step 2: Run the CLI
 
-Run the `shadriz` init command to setup your project.
+Run the `justdriz` init command to setup your project.
 
 ```bash
-npx shadriz@latest init
+npx justdriz@latest init
 ```
 
 ### Step 3: Configure project
@@ -79,9 +75,7 @@ This command will generate the user interface, database migration and schema, se
 
 The `-c` option takes a space-separated string of column configurations in the following format: `column_name:data_type:column_arg1:column_arg2`.
 
-shadriz supports a variety of primary key configurations, foreign key configuration, and default functions as shown in the "blog" examples below.
-
-See [Drizzle ORM docs](https://orm.drizzle.team/docs/column-types/pg) for a comprehensive list of data types and more advanced configurations.
+justdriz supports a variety of primary key configurations, foreign key configuration, and default functions as shown in the "blog" examples below. See [Drizzle ORM docs](https://orm.drizzle.team/docs/column-types/pg) for a comprehensive list of data types and more advanced configurations.
 
 ## Examples
 
@@ -198,51 +192,53 @@ The other problem with boilerplates is that it is usually a static hard-coded re
 
 ### Ruby on Rails
 
-shadriz is inspired by the **convention over configuration** philosophy of Ruby on Rails, which allows anyone to rapidly prototype applications in minutes.
+justdriz is inspired by the **convention over configuration** philosophy of Ruby on Rails, which allows anyone to rapidly prototype applications in minutes.
 
-Nostalgia for Ruby on Rails style development is one motivation that led to the creation of shadriz. Specially, the `shadriz scaffold` command was modeled after the `rails scaffold` command.
+🍣 justdriz is an [omakase](https://dhh.dk/2012/rails-is-omakase.html) of the author's preferred TypeScript ingredients.
+
+Nostalgia for Ruby on Rails style development is one motivation that led to the creation of justdriz.
 
 ### Next.js
 
-shadriz generates Next.js and React code that uses latest techniques, such as **server components and server actions**.
+justdriz generates Next.js and React code that uses latest techniques, such as **server components and server actions**.
 
 Next.js provides many conveniences out of the box, such file system routing, server side rendering, code bundling, and more.
 
-### shadcn/ui
+### Just D
 
-shadriz is inspired by the **non-dependency and customizability** of shadcn/ui, the tool that copies and paste beautifully styled components into your projects.
-
-Similarly, shadriz essentially generates full stack components into your Next.js project. You have full control of the code that is generated instead of the code being hidden behind an external package.
+Just D. is a chill set of React components, built on top of React Aria Components, all about keeping the web accessible. Easy to customize and just copy & paste into your React projects. Plus, it includes Tailwind CSS for sleek styling right out of the box.
 
 ### Drizzle ORM
 
-shadriz uses Drizzle ORM for the best-of-both worlds of **sql-like and relational queres**, as well as automatic **schema generation and database migrations**.
+justdriz uses Drizzle ORM for the best-of-both world of **sql-like** and **relational queres**, as well as automatic **schema generation** and **database migrations**.
 
-shadriz takes the automations one step further by generating the configuration files required to start using Drizzle ORM, as well as the database schemas and migrations for the full stack scaffolds.
+justdriz takes the automations one step further by generating the configuration files required to start using Drizzle ORM.
+
+Like Drizzle ORM, justdriz supports 3 database dialects: postgresql, mysql, and sqlite.
 
 ### TailwindCSS
 
-shadriz is based on shadcn/ui which has it's styling based on TailwindCSS, a CSS framework which provides reusable utility classes. TailwindCSS is chosen for it's benefits on **development speed and composability**.
+justdriz is based on justd which has it's **styling based on TailwindCSS** and React Aria Components, a CSS framework which provides reusable utility classes. TailwindCSS is chosen for it's benefits on **development speed** and **composability**.
 
 TailwindCSS simplifies and improves scalability of styling by coupling markup with style.
 
 ### Auth.js
 
-shadriz uses Auth.js for it's authentication solution. However, running the Auth.js automation is totally optional, as some applications may not need authentication or a different auth solution is preferred.
+justdriz uses Auth.js for it's authentication solution. However, running the Auth.js automation is totally optional, as some applications may not need authentication or a different auth solution is preferred.
 
 With one command, you can have authentication mostly setup and configured. Just add the client ids and secrets to the `.env.local` file and you're good to go.
 
-shadriz also provides a `script/create-user.ts` script to create test users. This script is only generated if `credentials` is chosen as a provider.
+justdriz also provides a `script/create-user.ts` script to create users. This is also provided as an example on how to leverage Drizzle ORM in backend scripting using TypeScript. Note: this script is only generated if `credentials` is chosen as a provider.
 
 ### Zod
 
-shadriz uses `zod` and `drizzle-zod` for data validations. Each server action that is generated by the scaffolding tool will also contain zod validations to check for the correctness of data being submitted.
+justdriz uses `zod` and `drizzle-zod` for data validations. Each server action that is generated by the scaffolding tool will also contain zod validations to check for the correctness of data being submitted.
 
 `drizzle-zod` automatically creates a zod schema based on a drizzle table. This reduces boilerplate. However, if specific validations are needed, the generated zod schemas can be extended to have custom validation rules.
 
 ## Author
 
-Built by [travisluong](https://www.travisluong.com). Source code available on [github](https://www.github.com/travisluong/shadriz).
+Built by [travisluong](https://www.travisluong.com). Source code available on [github](https://www.github.com/travisluong/justdriz).
 
 ## License
 

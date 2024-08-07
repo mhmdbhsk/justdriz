@@ -1,88 +1,90 @@
-import {
-  DbDialect,
-  DbPackageStrategy,
-  DbPackageStrategyOpts,
+import type {
+	DbDialect,
+	DbPackageStrategy,
+	DbPackageStrategyOpts,
 } from "../lib/types";
 import {
-  appendDbUrl,
-  installDependencies,
-  installDevDependencies,
-  renderTemplate,
+	appendDbUrl,
+	installDependencies,
+	installDevDependencies,
+	renderTemplate,
 } from "../lib/utils";
 
 export class PgPackageStrategy implements DbPackageStrategy {
-  constructor(opts: DbPackageStrategyOpts) {
-    this.opts = opts;
-  }
+	constructor(opts: DbPackageStrategyOpts) {
+		this.opts = opts;
+	}
 
-  opts: DbPackageStrategyOpts;
+	opts: DbPackageStrategyOpts;
 
-  dialect: DbDialect = "postgresql";
+	dialect: DbDialect = "postgresql";
 
-  dependencies = ["pg"];
+	dependencies = ["pg"];
 
-  devDependencies = ["@types/pg"];
+	devDependencies = ["@types/pg"];
 
-  async init() {
-    await this.install();
-    this.copyMigrateScript();
-    this.appendDbUrl();
-    this.copyDbInstance();
-    this.copyDbInstanceForScripts();
-    this.copyCreateUserScript();
-  }
+	async init() {
+		await this.install();
+		this.copyMigrateScript();
+		this.appendDbUrl();
+		this.copyDbInstance();
+		this.copyDbInstanceForScripts();
+		this.copyCreateUserScript();
+	}
 
-  async install(): Promise<void> {
-    if (!this.opts.install) {
-      return;
-    }
+	async install(): Promise<void> {
+		if (!this.opts.install) {
+			return;
+		}
 
-    await installDependencies({
-      dependencies: this.dependencies,
-      pnpm: this.opts.pnpm,
-      latest: this.opts.latest,
-    });
+		await installDependencies({
+			dependencies: this.dependencies,
+			pnpm: this.opts.pnpm,
+			bun: this.opts.bun,
+			latest: this.opts.latest,
+		});
 
-    await installDevDependencies({
-      devDependencies: this.devDependencies,
-      pnpm: this.opts.pnpm,
-      latest: this.opts.latest,
-    });
-  }
+		await installDevDependencies({
+			devDependencies: this.devDependencies,
+			pnpm: this.opts.pnpm,
+			bun: this.opts.bun,
+			latest: this.opts.latest,
+		});
+	}
 
-  render(): Promise<void> {
-    throw new Error("Method not implemented.");
-  }
+	render(): Promise<void> {
+		throw new Error("Method not implemented.");
+	}
 
-  copyMigrateScript(): void {
-    renderTemplate({
-      inputPath: "db-packages/scripts/migrate.ts.pg.hbs",
-      outputPath: "scripts/migrate.ts",
-    });
-  }
+	copyMigrateScript(): void {
+		renderTemplate({
+			inputPath: "db-packages/scripts/migrate.ts.pg.hbs",
+			outputPath: "scripts/migrate.ts",
+		});
+	}
 
-  appendDbUrl(): void {
-    appendDbUrl("postgres://user:password@host:port/db");
-  }
+	appendDbUrl(): void {
+		appendDbUrl("postgres://user:password@host:port/db");
+	}
 
-  copyDbInstance(): void {
-    renderTemplate({
-      inputPath: "db-packages/lib/db.ts.pg.hbs",
-      outputPath: "lib/db.ts",
-    });
-  }
+	copyDbInstance(): void {
+		renderTemplate({
+			inputPath: "db-packages/lib/db.ts.pg.hbs",
+			outputPath: "lib/db.ts",
+		});
+	}
 
-  copyDbInstanceForScripts(): void {
-    renderTemplate({
-      inputPath: "db-packages/scripts/sdb.ts.pg.hbs",
-      outputPath: "scripts/sdb.ts",
-    });
-  }
+	copyDbInstanceForScripts(): void {
+		renderTemplate({
+			inputPath: "db-packages/scripts/sdb.ts.pg.hbs",
+			outputPath: "scripts/sdb.ts",
+		});
+	}
 
-  copyCreateUserScript() {
-    renderTemplate({
-      inputPath: "db-packages/scripts/create-user.ts.pg.hbs",
-      outputPath: "scripts/create-user.ts",
-    });
-  }
+	copyCreateUserScript() {
+		renderTemplate({
+			inputPath: "db-packages/scripts/create-user.ts.pg.hbs",
+			outputPath: "scripts/create-user.ts",
+		});
+	}
 }
